@@ -3,7 +3,9 @@ package st.bug.clang;
 import java.io.File;
 
 import st.bug.clang.swig.CXCodeCompleteResults;
+import st.bug.clang.swig.CXCursor;
 import st.bug.clang.swig.CXFile_p;
+import st.bug.clang.swig.CXSaveError;
 import st.bug.clang.swig.CXUnsavedFile;
 import st.bug.clang.swig.SWIGTYPE_p_CXTranslationUnitImpl;
 import st.bug.clang.wrappers.Clang;
@@ -15,14 +17,6 @@ public class TranslationUnit implements Disposable {
 
 	protected TranslationUnit(SWIGTYPE_p_CXTranslationUnitImpl unit) {
 		me = unit;
-	}
-
-	public TranslationUnit(Index index, File source, String[] args) {
-		long numUnsavedFiles = 0;
-		CXUnsavedFile unsavedFiles = null;
-		me = Clang.createTranslationUnitFromSourceFile(index.me,
-				source.getAbsolutePath(), args.length, args, numUnsavedFiles,
-				unsavedFiles);
 	}
 
 	@Override
@@ -81,5 +75,34 @@ public class TranslationUnit implements Disposable {
 
 	public String getSpelling() {
 		return Clang.getStringAndDispose(Clang.getTranslationUnitSpelling(me));
+	}
+
+	public long defaultEditingTranslationUnitOptions() {
+		return Clang.defaultEditingTranslationUnitOptions();
+	}
+
+	public long defaultSaveOptions() {
+		return Clang.defaultSaveOptions(me);
+	}
+
+	public CXSaveError save(File file, long options) {
+		int res = Clang
+				.saveTranslationUnit(me, file.getAbsolutePath(), options);
+		return CXSaveError.swigToEnum(res);
+	}
+
+	public long defaultReparseOptions() {
+		return Clang.defaultReparseOptions(me);
+	}
+
+	public boolean reparse(long options) {
+		long numUnsavedFiles = 0;
+		CXUnsavedFile unsavedFiles = null;
+		return Clang.reparseTranslationUnit(me, numUnsavedFiles, unsavedFiles,
+				options) == 0;
+	}
+
+	public Cursor getCursor() {
+		return new Cursor(Clang.getTranslationUnitCursor(me));
 	}
 }

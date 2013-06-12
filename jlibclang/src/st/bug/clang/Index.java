@@ -45,4 +45,14 @@ public class Index implements Disposable {
 	public TranslationUnit parseTranslationUnit(String[] args) {
 		return parseTranslationUnit(null, args, 0);
 	}
+
+	public TranslationUnit createTranslationUnitFromSourceFile(File source,
+			String[] args) {
+		CXUnsavedFile unsavedFiles = null;
+		long numUnsavedFiles = 0;
+		return new TranslationUnit(Clang.createTranslationUnitFromSourceFile(
+				me, source.getAbsolutePath(), args.length, args,
+				numUnsavedFiles, unsavedFiles));
+	}
+
 }

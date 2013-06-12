@@ -19,6 +19,14 @@ public class clangjavaJNI {
   public final static native void delete_CXCompletionResultArray(long jarg1, CXCompletionResult jarg1_);
   public final static native long CXCompletionResultArray_getitem(long jarg1, CXCompletionResult jarg1_, int jarg2);
   public final static native void CXCompletionResultArray_setitem(long jarg1, CXCompletionResult jarg1_, int jarg2, long jarg3, CXCompletionResult jarg3_);
+  public final static native long new_CXPlatformAvailabilityArray(int jarg1);
+  public final static native void delete_CXPlatformAvailabilityArray(long jarg1, CXPlatformAvailability jarg1_);
+  public final static native long CXPlatformAvailabilityArray_getitem(long jarg1, CXPlatformAvailability jarg1_, int jarg2);
+  public final static native void CXPlatformAvailabilityArray_setitem(long jarg1, CXPlatformAvailability jarg1_, int jarg2, long jarg3, CXPlatformAvailability jarg3_);
+  public final static native long new_CXCursorArray(int jarg1);
+  public final static native void delete_CXCursorArray(long jarg1, CXCursor jarg1_);
+  public final static native long CXCursorArray_getitem(long jarg1, CXCursor jarg1_, int jarg2);
+  public final static native void CXCursorArray_setitem(long jarg1, CXCursor jarg1_, int jarg2, long jarg3, CXCursor jarg3_);
   public final static native void CXString_data_set(long jarg1, CXString jarg1_, long jarg2);
   public final static native long CXString_data_get(long jarg1, CXString jarg1_);
   public final static native void CXString_private_flags_set(long jarg1, CXString jarg1_, long jarg2);
@@ -181,7 +189,7 @@ public class clangjavaJNI {
   public final static native long CXPlatformAvailability_Message_get(long jarg1, CXPlatformAvailability jarg1_);
   public final static native long new_CXPlatformAvailability();
   public final static native void delete_CXPlatformAvailability(long jarg1);
-  public final static native int getCursorPlatformAvailability(long jarg1, CXCursor jarg1_, long jarg2, long jarg3, CXString jarg3_, long jarg4, long jarg5, CXString jarg5_, long jarg6, CXPlatformAvailability jarg6_, int jarg7);
+  public final static native int getCursorPlatformAvailability(long jarg1, CXCursor jarg1_, long[] jarg2, long jarg3, CXString jarg3_, long[] jarg4, long jarg5, CXString jarg5_, long jarg6, CXPlatformAvailability jarg6_, int jarg7);
   public final static native void disposeCXPlatformAvailability(long jarg1, CXPlatformAvailability jarg1_);
   public final static native int getCursorLanguage(long jarg1, CXCursor jarg1_);
   public final static native long Cursor_getTranslationUnit(long jarg1, CXCursor jarg1_);

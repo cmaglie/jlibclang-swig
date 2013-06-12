@@ -26,6 +26,40 @@ public class clangjava implements clangjavaConstants {
     clangjavaJNI.CXCompletionResultArray_setitem(CXCompletionResult.getCPtr(ary), ary, index, CXCompletionResult.getCPtr(value), value);
   }
 
+  public static CXPlatformAvailability new_CXPlatformAvailabilityArray(int nelements) {
+    long cPtr = clangjavaJNI.new_CXPlatformAvailabilityArray(nelements);
+    return (cPtr == 0) ? null : new CXPlatformAvailability(cPtr, false);
+  }
+
+  public static void delete_CXPlatformAvailabilityArray(CXPlatformAvailability ary) {
+    clangjavaJNI.delete_CXPlatformAvailabilityArray(CXPlatformAvailability.getCPtr(ary), ary);
+  }
+
+  public static CXPlatformAvailability CXPlatformAvailabilityArray_getitem(CXPlatformAvailability ary, int index) {
+    return new CXPlatformAvailability(clangjavaJNI.CXPlatformAvailabilityArray_getitem(CXPlatformAvailability.getCPtr(ary), ary, index), true);
+  }
+
+  public static void CXPlatformAvailabilityArray_setitem(CXPlatformAvailability ary, int index, CXPlatformAvailability value) {
+    clangjavaJNI.CXPlatformAvailabilityArray_setitem(CXPlatformAvailability.getCPtr(ary), ary, index, CXPlatformAvailability.getCPtr(value), value);
+  }
+
+  public static CXCursor new_CXCursorArray(int nelements) {
+    long cPtr = clangjavaJNI.new_CXCursorArray(nelements);
+    return (cPtr == 0) ? null : new CXCursor(cPtr, false);
+  }
+
+  public static void delete_CXCursorArray(CXCursor ary) {
+    clangjavaJNI.delete_CXCursorArray(CXCursor.getCPtr(ary), ary);
+  }
+
+  public static CXCursor CXCursorArray_getitem(CXCursor ary, int index) {
+    return new CXCursor(clangjavaJNI.CXCursorArray_getitem(CXCursor.getCPtr(ary), ary, index), true);
+  }
+
+  public static void CXCursorArray_setitem(CXCursor ary, int index, CXCursor value) {
+    clangjavaJNI.CXCursorArray_setitem(CXCursor.getCPtr(ary), ary, index, CXCursor.getCPtr(value), value);
+  }
+
   public static String getCString(CXString string) {
     return clangjavaJNI.getCString(CXString.getCPtr(string), string);
   }
@@ -352,8 +386,8 @@ public class clangjava implements clangjavaConstants {
     return CXAvailabilityKind.swigToEnum(clangjavaJNI.getCursorAvailability(CXCursor.getCPtr(cursor), cursor));
   }
 
-  public static int getCursorPlatformAvailability(CXCursor cursor, SWIGTYPE_p_int always_deprecated, CXString deprecated_message, SWIGTYPE_p_int always_unavailable, CXString unavailable_message, CXPlatformAvailability availability, int availability_size) {
-    return clangjavaJNI.getCursorPlatformAvailability(CXCursor.getCPtr(cursor), cursor, SWIGTYPE_p_int.getCPtr(always_deprecated), CXString.getCPtr(deprecated_message), deprecated_message, SWIGTYPE_p_int.getCPtr(always_unavailable), CXString.getCPtr(unavailable_message), unavailable_message, CXPlatformAvailability.getCPtr(availability), availability, availability_size);
+  public static int getCursorPlatformAvailability(CXCursor cursor, long[] always_deprecated, CXString deprecated_message, long[] always_unavailable, CXString unavailable_message, CXPlatformAvailability availability, int availability_size) {
+    return clangjavaJNI.getCursorPlatformAvailability(CXCursor.getCPtr(cursor), cursor, always_deprecated, CXString.getCPtr(deprecated_message), deprecated_message, always_unavailable, CXString.getCPtr(unavailable_message), unavailable_message, CXPlatformAvailability.getCPtr(availability), availability, availability_size);
   }
 
   public static void disposeCXPlatformAvailability(CXPlatformAvailability availability) {

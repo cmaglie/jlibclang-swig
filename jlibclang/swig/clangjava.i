@@ -14,6 +14,9 @@
 
 /* Some output parameters are signed as "unsigned *" */
 %apply unsigned int *OUTPUT { unsigned * };
+/* Assign specific output parameters */
+%apply unsigned int *OUTPUT { int *always_deprecated };
+%apply unsigned int *OUTPUT { int *always_unavailable };
 
 /* CXFile is an opaque type */
 %include cpointer.i
@@ -22,6 +25,8 @@
 /* Some functions needs unbounded array */
 %include "carrays.i"
 %array_functions(CXCompletionResult, CXCompletionResultArray)
+%array_functions(CXPlatformAvailability, CXPlatformAvailabilityArray)
+%array_functions(CXCursor, CXCursorArray)
 
 /* time_t java mapping */
 %apply long long { time_t }

@@ -229,6 +229,38 @@ static void CXCompletionResultArray_setitem(CXCompletionResult *ary, int index, 
 }
 
 
+static CXPlatformAvailability *new_CXPlatformAvailabilityArray(int nelements) { 
+  return (CXPlatformAvailability *) calloc(nelements,sizeof(CXPlatformAvailability)); 
+}
+
+static void delete_CXPlatformAvailabilityArray(CXPlatformAvailability *ary) { 
+  free(ary); 
+}
+
+static CXPlatformAvailability CXPlatformAvailabilityArray_getitem(CXPlatformAvailability *ary, int index) {
+    return ary[index];
+}
+static void CXPlatformAvailabilityArray_setitem(CXPlatformAvailability *ary, int index, CXPlatformAvailability value) {
+    ary[index] = value;
+}
+
+
+static CXCursor *new_CXCursorArray(int nelements) { 
+  return (CXCursor *) calloc(nelements,sizeof(CXCursor)); 
+}
+
+static void delete_CXCursorArray(CXCursor *ary) { 
+  free(ary); 
+}
+
+static CXCursor CXCursorArray_getitem(CXCursor *ary, int index) {
+    return ary[index];
+}
+static void CXCursorArray_setitem(CXCursor *ary, int index, CXCursor value) {
+    ary[index] = value;
+}
+
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -377,6 +409,142 @@ SWIGEXPORT void JNICALL Java_st_bug_clang_swig_clangjavaJNI_CXCompletionResultAr
   }
   arg3 = *argp3; 
   CXCompletionResultArray_setitem(arg1,arg2,arg3);
+}
+
+
+SWIGEXPORT jlong JNICALL Java_st_bug_clang_swig_clangjavaJNI_new_1CXPlatformAvailabilityArray(JNIEnv *jenv, jclass jcls, jint jarg1) {
+  jlong jresult = 0 ;
+  int arg1 ;
+  CXPlatformAvailability *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = (int)jarg1; 
+  result = (CXPlatformAvailability *)new_CXPlatformAvailabilityArray(arg1);
+  *(CXPlatformAvailability **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_st_bug_clang_swig_clangjavaJNI_delete_1CXPlatformAvailabilityArray(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  CXPlatformAvailability *arg1 = (CXPlatformAvailability *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(CXPlatformAvailability **)&jarg1; 
+  delete_CXPlatformAvailabilityArray(arg1);
+}
+
+
+SWIGEXPORT jlong JNICALL Java_st_bug_clang_swig_clangjavaJNI_CXPlatformAvailabilityArray_1getitem(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  jlong jresult = 0 ;
+  CXPlatformAvailability *arg1 = (CXPlatformAvailability *) 0 ;
+  int arg2 ;
+  CXPlatformAvailability result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(CXPlatformAvailability **)&jarg1; 
+  arg2 = (int)jarg2; 
+  result = CXPlatformAvailabilityArray_getitem(arg1,arg2);
+  {
+    CXPlatformAvailability * resultptr = (CXPlatformAvailability *) malloc(sizeof(CXPlatformAvailability));
+    memmove(resultptr, &result, sizeof(CXPlatformAvailability));
+    *(CXPlatformAvailability **)&jresult = resultptr;
+  }
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_st_bug_clang_swig_clangjavaJNI_CXPlatformAvailabilityArray_1setitem(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jobject jarg3_) {
+  CXPlatformAvailability *arg1 = (CXPlatformAvailability *) 0 ;
+  int arg2 ;
+  CXPlatformAvailability arg3 ;
+  CXPlatformAvailability *argp3 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg3_;
+  arg1 = *(CXPlatformAvailability **)&jarg1; 
+  arg2 = (int)jarg2; 
+  argp3 = *(CXPlatformAvailability **)&jarg3; 
+  if (!argp3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null CXPlatformAvailability");
+    return ;
+  }
+  arg3 = *argp3; 
+  CXPlatformAvailabilityArray_setitem(arg1,arg2,arg3);
+}
+
+
+SWIGEXPORT jlong JNICALL Java_st_bug_clang_swig_clangjavaJNI_new_1CXCursorArray(JNIEnv *jenv, jclass jcls, jint jarg1) {
+  jlong jresult = 0 ;
+  int arg1 ;
+  CXCursor *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = (int)jarg1; 
+  result = (CXCursor *)new_CXCursorArray(arg1);
+  *(CXCursor **)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_st_bug_clang_swig_clangjavaJNI_delete_1CXCursorArray(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  CXCursor *arg1 = (CXCursor *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(CXCursor **)&jarg1; 
+  delete_CXCursorArray(arg1);
+}
+
+
+SWIGEXPORT jlong JNICALL Java_st_bug_clang_swig_clangjavaJNI_CXCursorArray_1getitem(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  jlong jresult = 0 ;
+  CXCursor *arg1 = (CXCursor *) 0 ;
+  int arg2 ;
+  CXCursor result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(CXCursor **)&jarg1; 
+  arg2 = (int)jarg2; 
+  result = CXCursorArray_getitem(arg1,arg2);
+  {
+    CXCursor * resultptr = (CXCursor *) malloc(sizeof(CXCursor));
+    memmove(resultptr, &result, sizeof(CXCursor));
+    *(CXCursor **)&jresult = resultptr;
+  }
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_st_bug_clang_swig_clangjavaJNI_CXCursorArray_1setitem(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jlong jarg3, jobject jarg3_) {
+  CXCursor *arg1 = (CXCursor *) 0 ;
+  int arg2 ;
+  CXCursor arg3 ;
+  CXCursor *argp3 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg3_;
+  arg1 = *(CXCursor **)&jarg1; 
+  arg2 = (int)jarg2; 
+  argp3 = *(CXCursor **)&jarg3; 
+  if (!argp3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null CXCursor");
+    return ;
+  }
+  arg3 = *argp3; 
+  CXCursorArray_setitem(arg1,arg2,arg3);
 }
 
 
@@ -3297,7 +3465,7 @@ SWIGEXPORT void JNICALL Java_st_bug_clang_swig_clangjavaJNI_delete_1CXPlatformAv
 }
 
 
-SWIGEXPORT jint JNICALL Java_st_bug_clang_swig_clangjavaJNI_getCursorPlatformAvailability(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3, jobject jarg3_, jlong jarg4, jlong jarg5, jobject jarg5_, jlong jarg6, jobject jarg6_, jint jarg7) {
+SWIGEXPORT jint JNICALL Java_st_bug_clang_swig_clangjavaJNI_getCursorPlatformAvailability(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlongArray jarg2, jlong jarg3, jobject jarg3_, jlongArray jarg4, jlong jarg5, jobject jarg5_, jlong jarg6, jobject jarg6_, jint jarg7) {
   jint jresult = 0 ;
   CXCursor arg1 ;
   int *arg2 = (int *) 0 ;
@@ -3307,6 +3475,8 @@ SWIGEXPORT jint JNICALL Java_st_bug_clang_swig_clangjavaJNI_getCursorPlatformAva
   CXPlatformAvailability *arg6 = (CXPlatformAvailability *) 0 ;
   int arg7 ;
   CXCursor *argp1 ;
+  int temp2 ;
+  int temp4 ;
   int result;
   
   (void)jenv;
@@ -3321,14 +3491,46 @@ SWIGEXPORT jint JNICALL Java_st_bug_clang_swig_clangjavaJNI_getCursorPlatformAva
     return 0;
   }
   arg1 = *argp1; 
-  arg2 = *(int **)&jarg2; 
+  {
+    if (!jarg2) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "array null");
+      return 0;
+    }
+    if ((*jenv)->GetArrayLength(jenv, jarg2) == 0) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, "Array must contain at least 1 element");
+      return 0;
+    }
+    temp2 = (int)0;
+    arg2 = &temp2; 
+  }
   arg3 = *(CXString **)&jarg3; 
-  arg4 = *(int **)&jarg4; 
+  {
+    if (!jarg4) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "array null");
+      return 0;
+    }
+    if ((*jenv)->GetArrayLength(jenv, jarg4) == 0) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, "Array must contain at least 1 element");
+      return 0;
+    }
+    temp4 = (int)0;
+    arg4 = &temp4; 
+  }
   arg5 = *(CXString **)&jarg5; 
   arg6 = *(CXPlatformAvailability **)&jarg6; 
   arg7 = (int)jarg7; 
   result = (int)clang_getCursorPlatformAvailability(arg1,arg2,arg3,arg4,arg5,arg6,arg7);
   jresult = (jint)result; 
+  {
+    jlong jvalue = (jlong)temp2;
+    (*jenv)->SetLongArrayRegion(jenv, jarg2, 0, 1, &jvalue);
+  }
+  {
+    jlong jvalue = (jlong)temp4;
+    (*jenv)->SetLongArrayRegion(jenv, jarg4, 0, 1, &jvalue);
+  }
+  
+  
   return jresult;
 }
 
