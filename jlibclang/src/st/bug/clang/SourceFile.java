@@ -16,6 +16,12 @@ public class SourceFile {
 		me = file.value();
 	}
 
+	public SourceFile(SWIGTYPE_p_void file) {
+		CXFile_p fp = new CXFile_p();
+		fp.assign(file);
+		me = fp.value();
+	}
+
 	public String getName() {
 		return Clang.getStringAndDispose(Clang.getFileName(me));
 	}

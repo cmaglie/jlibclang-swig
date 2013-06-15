@@ -8,7 +8,7 @@ import st.bug.clang.wrappers.Disposable;
 
 public class SourceLocation implements Disposable {
 
-	private CXSourceLocation me;
+	CXSourceLocation me;
 
 	public SourceLocation() {
 		me = Clang.getNullLocation();

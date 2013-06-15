@@ -1,5 +1,7 @@
 package st.bug.clang;
 
+import java.math.BigInteger;
+
 import st.bug.clang.swig.CXAvailabilityKind;
 import st.bug.clang.swig.CXCursor;
 import st.bug.clang.swig.CXCursorKind;
@@ -7,6 +9,8 @@ import st.bug.clang.swig.CXLanguageKind;
 import st.bug.clang.swig.CXLinkageKind;
 import st.bug.clang.swig.CXPlatformAvailability;
 import st.bug.clang.swig.CXString;
+import st.bug.clang.swig.CXTypeKind;
+import st.bug.clang.swig.CX_CXXAccessSpecifier;
 import st.bug.clang.swig.SWIGTYPE_p_p_CXCursor;
 import st.bug.clang.wrappers.Clang;
 
@@ -191,11 +195,90 @@ public class Cursor {
 	public Cursor getLexicalParent() {
 		return new Cursor(Clang.getCursorLexicalParent(me));
 	}
-	
-	public Cursor[] getOverriddenCursors() {
+
+	public OverriddenCursors getOverriddenCursors() {
 		long[] num_overridden = new long[1];
-		SWIGTYPE_p_p_CXCursor overridden = null;
-		Clang.getOverriddenCursors(me, overridden, num_overridden);
-		return null;
+
+		SWIGTYPE_p_p_CXCursor pointer = Clang.new_CXCursor_p_p();
+		Clang.getOverriddenCursors(me, pointer, num_overridden);
+
+		return new OverriddenCursors(Clang.CXCursor_p_p_value(pointer),
+				num_overridden[0]);
+	}
+
+	public SourceFile getIncludedFile() {
+		return new SourceFile(Clang.getIncludedFile(me));
+	}
+
+	public SourceLocation getLocation() {
+		return new SourceLocation(Clang.getCursorLocation(me));
+	}
+
+	public SourceRange getExtent() {
+		return new SourceRange(Clang.getCursorExtent(me));
+	}
+
+	public Type getType() {
+		return new Type(Clang.getCursorType(me));
+	}
+
+	public Type getTypedefDeclUnderlyingType() {
+		return new Type(Clang.getTypedefDeclUnderlyingType(me));
+	}
+
+	public Type getEnumDeclIntegerType() {
+		return new Type(Clang.getEnumDeclIntegerType(me));
+	}
+
+	public long getEnumConstantDeclValue() {
+		return Clang.getEnumConstantDeclValue(me);
+	}
+
+	public BigInteger getEnumConstantDeclUnsignedValue() {
+		return Clang.getEnumConstantDeclUnsignedValue(me);
+	}
+
+	public int getFieldDeclBitWidth() {
+		return Clang.getFieldDeclBitWidth(me);
+	}
+
+	public int getNumArguments() {
+		return Clang.Cursor_getNumArguments(me);
+	}
+
+	public Cursor getArgument(int index) {
+		return new Cursor(Clang.Cursor_getArgument(me, index));
+	}
+
+	public String getDeclObjCTypeEncoding() {
+		return Clang.getStringAndDispose(Clang.getDeclObjCTypeEncoding(me));
+	}
+
+	public Type getResultType() {
+		return new Type(Clang.getCursorResultType(me));
+	}
+
+	public boolean isBitField() {
+		return Clang.Cursor_isBitField(me) != 0;
+	}
+
+	public boolean isVirtualBase() {
+		return Clang.isVirtualBase(me) != 0;
+	}
+
+	public CX_CXXAccessSpecifier getCXXAccessSpecifier() {
+		return Clang.getCXXAccessSpecifier(me);
+	}
+
+	public long getNumOverloadedDecls() {
+		return Clang.getNumOverloadedDecls(me);
+	}
+
+	public Cursor getOverloadedDecl(int index) {
+		return new Cursor(Clang.getOverloadedDecl(me, index));
+	}
+
+	public Type getIBOutletCollectionType() {
+		return new Type(Clang.getIBOutletCollectionType(me));
 	}
 }

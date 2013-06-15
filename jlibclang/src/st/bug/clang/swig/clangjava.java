@@ -60,6 +60,29 @@ public class clangjava implements clangjavaConstants {
     clangjavaJNI.CXCursorArray_setitem(CXCursor.getCPtr(ary), ary, index, CXCursor.getCPtr(value), value);
   }
 
+  public static SWIGTYPE_p_p_CXCursor new_CXCursor_p_p() {
+    long cPtr = clangjavaJNI.new_CXCursor_p_p();
+    return (cPtr == 0) ? null : new SWIGTYPE_p_p_CXCursor(cPtr, false);
+  }
+
+  public static SWIGTYPE_p_p_CXCursor copy_CXCursor_p_p(CXCursor value) {
+    long cPtr = clangjavaJNI.copy_CXCursor_p_p(CXCursor.getCPtr(value), value);
+    return (cPtr == 0) ? null : new SWIGTYPE_p_p_CXCursor(cPtr, false);
+  }
+
+  public static void delete_CXCursor_p_p(SWIGTYPE_p_p_CXCursor obj) {
+    clangjavaJNI.delete_CXCursor_p_p(SWIGTYPE_p_p_CXCursor.getCPtr(obj));
+  }
+
+  public static void CXCursor_p_p_assign(SWIGTYPE_p_p_CXCursor obj, CXCursor value) {
+    clangjavaJNI.CXCursor_p_p_assign(SWIGTYPE_p_p_CXCursor.getCPtr(obj), CXCursor.getCPtr(value), value);
+  }
+
+  public static CXCursor CXCursor_p_p_value(SWIGTYPE_p_p_CXCursor obj) {
+    long cPtr = clangjavaJNI.CXCursor_p_p_value(SWIGTYPE_p_p_CXCursor.getCPtr(obj));
+    return (cPtr == 0) ? null : new CXCursor(cPtr, false);
+  }
+
   public static String getCString(CXString string) {
     return clangjavaJNI.getCString(CXString.getCPtr(string), string);
   }

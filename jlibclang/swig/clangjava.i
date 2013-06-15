@@ -27,6 +27,7 @@
 %array_functions(CXCompletionResult, CXCompletionResultArray)
 %array_functions(CXPlatformAvailability, CXPlatformAvailabilityArray)
 %array_functions(CXCursor, CXCursorArray)
+%pointer_functions(CXCursor *, CXCursor_p_p);
 
 /* time_t java mapping */
 %apply long long { time_t }

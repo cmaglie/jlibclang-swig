@@ -27,6 +27,11 @@ public class clangjavaJNI {
   public final static native void delete_CXCursorArray(long jarg1, CXCursor jarg1_);
   public final static native long CXCursorArray_getitem(long jarg1, CXCursor jarg1_, int jarg2);
   public final static native void CXCursorArray_setitem(long jarg1, CXCursor jarg1_, int jarg2, long jarg3, CXCursor jarg3_);
+  public final static native long new_CXCursor_p_p();
+  public final static native long copy_CXCursor_p_p(long jarg1, CXCursor jarg1_);
+  public final static native void delete_CXCursor_p_p(long jarg1);
+  public final static native void CXCursor_p_p_assign(long jarg1, long jarg2, CXCursor jarg2_);
+  public final static native long CXCursor_p_p_value(long jarg1);
   public final static native void CXString_data_set(long jarg1, CXString jarg1_, long jarg2);
   public final static native long CXString_data_get(long jarg1, CXString jarg1_);
   public final static native void CXString_private_flags_set(long jarg1, CXString jarg1_, long jarg2);

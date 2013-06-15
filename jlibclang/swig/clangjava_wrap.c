@@ -261,6 +261,29 @@ static void CXCursorArray_setitem(CXCursor *ary, int index, CXCursor value) {
 }
 
 
+static CXCursor * *new_CXCursor_p_p() { 
+  return (CXCursor * *) calloc(1,sizeof(CXCursor *)); 
+}
+
+static CXCursor * *copy_CXCursor_p_p(CXCursor * value) { 
+  CXCursor * *obj = (CXCursor * *) calloc(1,sizeof(CXCursor *));
+  *obj = value;
+  return obj; 
+}
+
+static void delete_CXCursor_p_p(CXCursor * *obj) { 
+  if (obj) free(obj); 
+}
+
+static void CXCursor_p_p_assign(CXCursor * *obj, CXCursor * value) {
+  *obj = value;
+}
+
+static CXCursor * CXCursor_p_p_value(CXCursor * *obj) {
+  return *obj;
+}
+
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -545,6 +568,70 @@ SWIGEXPORT void JNICALL Java_st_bug_clang_swig_clangjavaJNI_CXCursorArray_1setit
   }
   arg3 = *argp3; 
   CXCursorArray_setitem(arg1,arg2,arg3);
+}
+
+
+SWIGEXPORT jlong JNICALL Java_st_bug_clang_swig_clangjavaJNI_new_1CXCursor_1p_1p(JNIEnv *jenv, jclass jcls) {
+  jlong jresult = 0 ;
+  CXCursor **result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  result = (CXCursor **)new_CXCursor_p_p();
+  *(CXCursor ***)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_st_bug_clang_swig_clangjavaJNI_copy_1CXCursor_1p_1p(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  CXCursor *arg1 = (CXCursor *) 0 ;
+  CXCursor **result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(CXCursor **)&jarg1; 
+  result = (CXCursor **)copy_CXCursor_p_p(arg1);
+  *(CXCursor ***)&jresult = result; 
+  return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_st_bug_clang_swig_clangjavaJNI_delete_1CXCursor_1p_1p(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  CXCursor **arg1 = (CXCursor **) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(CXCursor ***)&jarg1; 
+  delete_CXCursor_p_p(arg1);
+}
+
+
+SWIGEXPORT void JNICALL Java_st_bug_clang_swig_clangjavaJNI_CXCursor_1p_1p_1assign(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2, jobject jarg2_) {
+  CXCursor **arg1 = (CXCursor **) 0 ;
+  CXCursor *arg2 = (CXCursor *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg2_;
+  arg1 = *(CXCursor ***)&jarg1; 
+  arg2 = *(CXCursor **)&jarg2; 
+  CXCursor_p_p_assign(arg1,arg2);
+}
+
+
+SWIGEXPORT jlong JNICALL Java_st_bug_clang_swig_clangjavaJNI_CXCursor_1p_1p_1value(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  jlong jresult = 0 ;
+  CXCursor **arg1 = (CXCursor **) 0 ;
+  CXCursor *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(CXCursor ***)&jarg1; 
+  result = (CXCursor *)CXCursor_p_p_value(arg1);
+  *(CXCursor **)&jresult = result; 
+  return jresult;
 }
 
 

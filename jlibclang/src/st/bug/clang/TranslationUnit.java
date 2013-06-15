@@ -68,9 +68,7 @@ public class TranslationUnit implements Disposable {
 	}
 
 	public SourceFile getFile(String filename) {
-		CXFile_p fp = new CXFile_p();
-		fp.assign(Clang.getFile(me, filename));
-		return new SourceFile(fp);
+		return new SourceFile(Clang.getFile(me, filename));
 	}
 
 	public String getSpelling() {
@@ -104,5 +102,9 @@ public class TranslationUnit implements Disposable {
 
 	public Cursor getCursor() {
 		return new Cursor(Clang.getTranslationUnitCursor(me));
+	}
+	
+	public Cursor getCursor(SourceLocation location) {
+		return new Cursor(Clang.getCursor(me, location.me));
 	}
 }
