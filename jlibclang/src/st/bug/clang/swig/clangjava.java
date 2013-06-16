@@ -628,8 +628,8 @@ public class clangjava implements clangjavaConstants {
     return new CXType(clangjavaJNI.getIBOutletCollectionType(CXCursor.getCPtr(arg0), arg0), true);
   }
 
-  public static long visitChildren(CXCursor parent, SWIGTYPE_p_f_CXCursor_CXCursor_p_void__CXChildVisitResult visitor, SWIGTYPE_p_void client_data) {
-    return clangjavaJNI.visitChildren(CXCursor.getCPtr(parent), parent, SWIGTYPE_p_f_CXCursor_CXCursor_p_void__CXChildVisitResult.getCPtr(visitor), SWIGTYPE_p_void.getCPtr(client_data));
+  public static long visitChildren(CXCursor parent, st.bug.clang.wrappers.CursorVisitorWrapper visitor) {
+    return clangjavaJNI.visitChildren(CXCursor.getCPtr(parent), parent, visitor);
   }
 
   public static CXString getCursorUSR(CXCursor arg0) {

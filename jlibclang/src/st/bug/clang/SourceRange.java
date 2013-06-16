@@ -44,4 +44,9 @@ public class SourceRange implements Disposable {
 	public static boolean equals(SourceRange x, SourceRange y) {
 		return Clang.equalRanges(x.me, y.me) != 0;
 	}
+
+	@Override
+	public String toString() {
+		return "SourceRange: [" + getStart() + " - " + getEnd() + "]";
+	}
 }

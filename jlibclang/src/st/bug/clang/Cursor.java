@@ -9,10 +9,10 @@ import st.bug.clang.swig.CXLanguageKind;
 import st.bug.clang.swig.CXLinkageKind;
 import st.bug.clang.swig.CXPlatformAvailability;
 import st.bug.clang.swig.CXString;
-import st.bug.clang.swig.CXTypeKind;
 import st.bug.clang.swig.CX_CXXAccessSpecifier;
 import st.bug.clang.swig.SWIGTYPE_p_p_CXCursor;
 import st.bug.clang.wrappers.Clang;
+import st.bug.clang.wrappers.CursorVisitorWrapper;
 
 public class Cursor {
 
@@ -280,5 +280,9 @@ public class Cursor {
 
 	public Type getIBOutletCollectionType() {
 		return new Type(Clang.getIBOutletCollectionType(me));
+	}
+
+	public boolean visitChildren(CursorVisitor visitor) {
+		return Clang.visitChildren(me, new CursorVisitorWrapper(visitor)) != 0;
 	}
 }

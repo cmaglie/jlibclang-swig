@@ -32,6 +32,8 @@ public class SourceFile {
 	}
 
 	public File getFile() {
+		if (getName() == null)
+			return null;
 		return new File(getName());
 	}
 

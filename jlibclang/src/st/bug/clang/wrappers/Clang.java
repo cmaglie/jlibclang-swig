@@ -1,5 +1,7 @@
 package st.bug.clang.wrappers;
 
+import st.bug.clang.CursorVisitor;
+import st.bug.clang.swig.CXCursor;
 import st.bug.clang.swig.CXFile_p;
 import st.bug.clang.swig.CXSourceLocation;
 import st.bug.clang.swig.CXString;

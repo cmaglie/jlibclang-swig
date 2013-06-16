@@ -284,6 +284,33 @@ static CXCursor * CXCursor_p_p_value(CXCursor * *obj) {
 }
 
 
+struct CXCursorVisitor_cb_data {
+  JNIEnv *env;
+  jobject obj;
+};
+enum CXChildVisitResult CXCursorVisitor_cb(CXCursor cursor, CXCursor parent, CXClientData ptr) {
+  struct CXCursorVisitor_cb_data *data = ptr;
+  JNIEnv *env = data->env;
+
+  // Create cursor objects
+  const jclass cursorClass = (*env)->FindClass(env, "st/bug/clang/swig/CXCursor");
+  const jmethodID constructor = (*env)->GetMethodID(env, cursorClass, "<init>", "(JZ)V");
+  jlong cursorArg;
+  jlong parentArg;
+  *(CXCursor **)&cursorArg = &cursor;
+  *(CXCursor **)&parentArg = &parent;
+  jboolean falseArg = (jboolean)0;
+  jobject cursorCursor = (*env)->NewObject(env, cursorClass, constructor, cursorArg, falseArg);
+  jobject parentCursor = (*env)->NewObject(env, cursorClass, constructor, parentArg, falseArg);
+
+  // Run visit callback
+  jclass visitorClass = (*env)->FindClass(env, "st/bug/clang/wrappers/CursorVisitorWrapper");
+  jmethodID meth = (*env)->GetMethodID(env, visitorClass, "visit", "(Lst/bug/clang/swig/CXCursor;Lst/bug/clang/swig/CXCursor;)I");
+  jint res = (*env)->CallIntMethod(env, data->obj, meth, cursorCursor, parentCursor);
+  return res;
+}
+
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -4920,7 +4947,7 @@ SWIGEXPORT jlong JNICALL Java_st_bug_clang_swig_clangjavaJNI_getIBOutletCollecti
 }
 
 
-SWIGEXPORT jlong JNICALL Java_st_bug_clang_swig_clangjavaJNI_visitChildren(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jlong jarg3) {
+SWIGEXPORT jlong JNICALL Java_st_bug_clang_swig_clangjavaJNI_visitChildren(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jobject jarg2) {
   jlong jresult = 0 ;
   CXCursor arg1 ;
   CXCursorVisitor arg2 = (CXCursorVisitor) 0 ;
@@ -4937,8 +4964,13 @@ SWIGEXPORT jlong JNICALL Java_st_bug_clang_swig_clangjavaJNI_visitChildren(JNIEn
     return 0;
   }
   arg1 = *argp1; 
-  arg2 = *(CXCursorVisitor *)&jarg2; 
-  arg3 = *(CXClientData *)&jarg3; 
+  {
+    struct CXCursorVisitor_cb_data *data = malloc(sizeof *data);
+    data->env = jenv;
+    data->obj = jarg2;
+    arg2 = CXCursorVisitor_cb;
+    arg3 = data;
+  }
   result = (unsigned int)clang_visitChildren(arg1,arg2,arg3);
   jresult = (jlong)result; 
   return jresult;

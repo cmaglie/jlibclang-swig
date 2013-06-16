@@ -112,4 +112,8 @@ public class SourceLocation implements Disposable {
 		return new SourceRange(range);
 	}
 
+	@Override
+	public String toString() {
+		return getExpansionLocation().toString();
+	}
 }

@@ -254,7 +254,7 @@ public class clangjavaJNI {
   public final static native long getNumOverloadedDecls(long jarg1, CXCursor jarg1_);
   public final static native long getOverloadedDecl(long jarg1, CXCursor jarg1_, long jarg2);
   public final static native long getIBOutletCollectionType(long jarg1, CXCursor jarg1_);
-  public final static native long visitChildren(long jarg1, CXCursor jarg1_, long jarg2, long jarg3);
+  public final static native long visitChildren(long jarg1, CXCursor jarg1_, st.bug.clang.wrappers.CursorVisitorWrapper jarg2);
   public final static native long getCursorUSR(long jarg1, CXCursor jarg1_);
   public final static native long constructUSR_ObjCClass(String jarg1);
   public final static native long constructUSR_ObjCCategory(String jarg1, String jarg2);
