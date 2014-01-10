@@ -3,6 +3,7 @@ package st.bug.clang;
 import java.math.BigInteger;
 
 import st.bug.clang.swig.CXAvailabilityKind;
+import st.bug.clang.swig.CXComment;
 import st.bug.clang.swig.CXCursor;
 import st.bug.clang.swig.CXCursorKind;
 import st.bug.clang.swig.CXLanguageKind;
@@ -284,5 +285,78 @@ public class Cursor {
 
 	public boolean visitChildren(CursorVisitor visitor) {
 		return Clang.visitChildren(me, new CursorVisitorWrapper(visitor)) != 0;
+	}
+
+	public String getUSR() {
+		return Clang.getStringAndDispose(Clang.getCursorUSR(me));
+	}
+
+	public String getSpelling() {
+		return Clang.getStringAndDispose(Clang.getCursorSpelling(me));
+	}
+
+	public SourceRange getSpellingNameRange(long pieceIndex, long options) {
+		return new SourceRange(Clang.Cursor_getSpellingNameRange(me,
+				pieceIndex, options));
+	}
+
+	public String getDisplayName() {
+		return Clang.getStringAndDispose(Clang.getCursorDisplayName(me));
+	}
+
+	public Cursor getReferenced() {
+		return new Cursor(Clang.getCursorReferenced(me));
+	}
+
+	public Cursor getDefinition() {
+		return new Cursor(Clang.getCursorDefinition(me));
+	}
+
+	public boolean isDefinition() {
+		return Clang.isCursorDefinition(me) != 0;
+	}
+
+	public Cursor getCanonical() {
+		return new Cursor(Clang.getCanonicalCursor(me));
+	}
+
+	public int getObjCSelectorIndex() {
+		return Clang.Cursor_getObjCSelectorIndex(me);
+	}
+
+	public boolean isDynamicCall() {
+		return Clang.Cursor_isDynamicCall(me) != 0;
+	}
+
+	public Type getReceiverType() {
+		return new Type(Clang.Cursor_getReceiverType(me));
+	}
+
+	public long getObjCPropertyAttributes(long reserved) {
+		return Clang.Cursor_getObjCPropertyAttributes(me, reserved);
+	}
+
+	public long getObjCDeclQualifiers() {
+		return Clang.Cursor_getObjCDeclQualifiers(me);
+	}
+
+	public boolean isVaradic() {
+		return Clang.Cursor_isVariadic(me) != 0;
+	}
+
+	public SourceRange getCommentRange() {
+		return new SourceRange(Clang.Cursor_getCommentRange(me));
+	}
+
+	public String getRawCommentText() {
+		return Clang.getStringAndDispose(Clang.Cursor_getRawCommentText(me));
+	}
+
+	public String getBriefCommentText() {
+		return Clang.getStringAndDispose(Clang.Cursor_getBriefCommentText(me));
+	}
+
+	public CXComment getParsedComment() {
+		return Clang.Cursor_getParsedComment(me);
 	}
 }
