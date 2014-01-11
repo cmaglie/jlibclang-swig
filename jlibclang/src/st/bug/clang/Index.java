@@ -39,6 +39,8 @@ public class Index implements Disposable {
 		SWIGTYPE_p_CXTranslationUnitImpl tu = Clang.parseTranslationUnit(me,
 				source == null ? null : source.getAbsolutePath(), args,
 				args.length, unsaved_files, num_unsaved_files, options);
+		if (tu == null)
+			return null;
 		return new TranslationUnit(tu);
 	}
 
