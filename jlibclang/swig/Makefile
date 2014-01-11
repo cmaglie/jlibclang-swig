@@ -1,4 +1,7 @@
 
+JAVA6_INCLUDE=/usr/lib/jvm/java-6-sun/include
+CLANG_LIB_FOLDER=../lib/
+
 clean:
 	rm -f ../src/st/bug/clang/swig/*
 
@@ -9,13 +12,16 @@ compile_mac:
 	gcc -g -fpic -c clangjava_wrap.c -I/Developer/SDKs/MacOSX10.6.sdk/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Headers -I. -pthread
 	gcc -g -shared clangjava_wrap.o ../lib/libclang.dylib -o libclangjava.dylib -pthread
 
-compile_linux:
-	gcc -g -fpic -c clangjava_wrap.c -I/usr/lib/jvm/java-6-sun/include/ -I/usr/lib/jvm/java-6-sun/include/linux -I. -pthread
-	gcc -g -shared clangjava_wrap.o ../../eclipse-workspace/clang2/lib/libclang.so -o libclangjava.so -pthread
-
-install:
+install_mac:
 	cp libclangjava.dylib ../lib/
 
-mac: clean swig compile_mac install
+compile_linux:
+	gcc -g -fpic -c clangjava_wrap.c -I${JAVA6_INCLUDE} -I${JAVA6_INCLUDE}/linux -I. -pthread
+	gcc -g -shared clangjava_wrap.o ${CLANG_LIB_FOLDER}/libclang.so -o libclangjava.so -pthread
 
-linux: clean swig compile_linux install
+install_linux:
+	cp libclangjava.so ../lib/
+
+mac: clean swig compile_mac install_mac
+
+linux: clean swig compile_linux install_linux
