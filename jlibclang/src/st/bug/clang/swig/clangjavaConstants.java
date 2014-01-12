@@ -10,7 +10,7 @@ package st.bug.clang.swig;
 
 public interface clangjavaConstants {
   public final static int CINDEX_VERSION_MAJOR = 0;
-  public final static int CINDEX_VERSION_MINOR = 19;
-  public final static int CINDEX_VERSION = (((0) *10000) +((19) *1));
-  public final static String CINDEX_VERSION_STRING = "0.19";
+  public final static int CINDEX_VERSION_MINOR = 20;
+  public final static int CINDEX_VERSION = (((0) *10000) +((20) *1));
+  public final static String CINDEX_VERSION_STRING = "0.20";
 }

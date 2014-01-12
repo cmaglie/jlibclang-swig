@@ -8,49 +8,38 @@
 
 package st.bug.clang.swig;
 
-public enum CXCallingConv {
-  CXCallingConv_Default(0),
-  CXCallingConv_C(1),
-  CXCallingConv_X86StdCall(2),
-  CXCallingConv_X86FastCall(3),
-  CXCallingConv_X86ThisCall(4),
-  CXCallingConv_X86Pascal(5),
-  CXCallingConv_AAPCS(6),
-  CXCallingConv_AAPCS_VFP(7),
-  CXCallingConv_PnaclCall(8),
-  CXCallingConv_IntelOclBicc(9),
-  CXCallingConv_X86_64Win64(10),
-  CXCallingConv_X86_64SysV(11),
-  CXCallingConv_Invalid(100),
-  CXCallingConv_Unexposed(200);
+public enum CXRefQualifierKind {
+  CXRefQualifier_None(0),
+  CXRefQualifier_LValue,
+  CXRefQualifier_RValue;
 
   public final int swigValue() {
     return swigValue;
   }
 
-  public static CXCallingConv swigToEnum(int swigValue) {
-    CXCallingConv[] swigValues = CXCallingConv.class.getEnumConstants();
+  public static CXRefQualifierKind swigToEnum(int swigValue) {
+    CXRefQualifierKind[] swigValues = CXRefQualifierKind.class.getEnumConstants();
     if (swigValue < swigValues.length && swigValue >= 0 && swigValues[swigValue].swigValue == swigValue)
       return swigValues[swigValue];
-    for (CXCallingConv swigEnum : swigValues)
+    for (CXRefQualifierKind swigEnum : swigValues)
       if (swigEnum.swigValue == swigValue)
         return swigEnum;
-    throw new IllegalArgumentException("No enum " + CXCallingConv.class + " with value " + swigValue);
+    throw new IllegalArgumentException("No enum " + CXRefQualifierKind.class + " with value " + swigValue);
   }
 
   @SuppressWarnings("unused")
-  private CXCallingConv() {
+  private CXRefQualifierKind() {
     this.swigValue = SwigNext.next++;
   }
 
   @SuppressWarnings("unused")
-  private CXCallingConv(int swigValue) {
+  private CXRefQualifierKind(int swigValue) {
     this.swigValue = swigValue;
     SwigNext.next = swigValue+1;
   }
 
   @SuppressWarnings("unused")
-  private CXCallingConv(CXCallingConv swigEnum) {
+  private CXRefQualifierKind(CXRefQualifierKind swigEnum) {
     this.swigValue = swigEnum.swigValue;
     SwigNext.next = this.swigValue+1;
   }

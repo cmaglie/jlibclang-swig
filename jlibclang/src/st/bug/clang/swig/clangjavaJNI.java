@@ -89,6 +89,7 @@ public class clangjavaJNI {
   public final static native long getLocation(long jarg1, long jarg2, long jarg3, long jarg4);
   public final static native long getLocationForOffset(long jarg1, long jarg2, long jarg3);
   public final static native int Location_isInSystemHeader(long jarg1, CXSourceLocation jarg1_);
+  public final static native int Location_isFromMainFile(long jarg1, CXSourceLocation jarg1_);
   public final static native long getNullRange();
   public final static native long getRange(long jarg1, CXSourceLocation jarg1_, long jarg2, CXSourceLocation jarg2_);
   public final static native long equalRanges(long jarg1, CXSourceRange jarg1_, long jarg2, CXSourceRange jarg2_);
@@ -246,8 +247,10 @@ public class clangjavaJNI {
   public final static native long getArrayElementType(long jarg1, CXType jarg1_);
   public final static native long getArraySize(long jarg1, CXType jarg1_);
   public final static native long Type_getAlignOf(long jarg1, CXType jarg1_);
+  public final static native long Type_getClassType(long jarg1, CXType jarg1_);
   public final static native long Type_getSizeOf(long jarg1, CXType jarg1_);
   public final static native long Type_getOffsetOf(long jarg1, CXType jarg1_, String jarg2);
+  public final static native int Type_getCXXRefQualifier(long jarg1, CXType jarg1_);
   public final static native long Cursor_isBitField(long jarg1, CXCursor jarg1_);
   public final static native long isVirtualBase(long jarg1, CXCursor jarg1_);
   public final static native int getCXXAccessSpecifier(long jarg1, CXCursor jarg1_);
@@ -274,6 +277,7 @@ public class clangjavaJNI {
   public final static native long Cursor_getReceiverType(long jarg1, CXCursor jarg1_);
   public final static native long Cursor_getObjCPropertyAttributes(long jarg1, CXCursor jarg1_, long jarg2);
   public final static native long Cursor_getObjCDeclQualifiers(long jarg1, CXCursor jarg1_);
+  public final static native long Cursor_isObjCOptional(long jarg1, CXCursor jarg1_);
   public final static native long Cursor_isVariadic(long jarg1, CXCursor jarg1_);
   public final static native long Cursor_getCommentRange(long jarg1, CXCursor jarg1_);
   public final static native long Cursor_getRawCommentText(long jarg1, CXCursor jarg1_);
@@ -613,4 +617,7 @@ public class clangjavaJNI {
   public final static native long CompileCommand_getDirectory(long jarg1);
   public final static native long CompileCommand_getNumArgs(long jarg1);
   public final static native long CompileCommand_getArg(long jarg1, long jarg2);
+  public final static native long CompileCommand_getNumMappedSources(long jarg1);
+  public final static native long CompileCommand_getMappedSourcePath(long jarg1, long jarg2);
+  public final static native long CompileCommand_getMappedSourceContent(long jarg1, long jarg2);
 }

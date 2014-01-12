@@ -1526,6 +1526,27 @@ SWIGEXPORT jint JNICALL Java_st_bug_clang_swig_clangjavaJNI_Location_1isInSystem
 }
 
 
+SWIGEXPORT jint JNICALL Java_st_bug_clang_swig_clangjavaJNI_Location_1isFromMainFile(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  CXSourceLocation arg1 ;
+  CXSourceLocation *argp1 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  argp1 = *(CXSourceLocation **)&jarg1; 
+  if (!argp1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null CXSourceLocation");
+    return 0;
+  }
+  arg1 = *argp1; 
+  result = (int)clang_Location_isFromMainFile(arg1);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
 SWIGEXPORT jlong JNICALL Java_st_bug_clang_swig_clangjavaJNI_getNullRange(JNIEnv *jenv, jclass jcls) {
   jlong jresult = 0 ;
   CXSourceRange result;
@@ -4762,6 +4783,31 @@ SWIGEXPORT jlong JNICALL Java_st_bug_clang_swig_clangjavaJNI_Type_1getAlignOf(JN
 }
 
 
+SWIGEXPORT jlong JNICALL Java_st_bug_clang_swig_clangjavaJNI_Type_1getClassType(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  CXType arg1 ;
+  CXType *argp1 ;
+  CXType result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  argp1 = *(CXType **)&jarg1; 
+  if (!argp1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null CXType");
+    return 0;
+  }
+  arg1 = *argp1; 
+  result = clang_Type_getClassType(arg1);
+  {
+    CXType * resultptr = (CXType *) malloc(sizeof(CXType));
+    memmove(resultptr, &result, sizeof(CXType));
+    *(CXType **)&jresult = resultptr;
+  }
+  return jresult;
+}
+
+
 SWIGEXPORT jlong JNICALL Java_st_bug_clang_swig_clangjavaJNI_Type_1getSizeOf(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jlong jresult = 0 ;
   CXType arg1 ;
@@ -4807,6 +4853,27 @@ SWIGEXPORT jlong JNICALL Java_st_bug_clang_swig_clangjavaJNI_Type_1getOffsetOf(J
   result = (long long)clang_Type_getOffsetOf(arg1,(char const *)arg2);
   jresult = (jlong)result; 
   if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_st_bug_clang_swig_clangjavaJNI_Type_1getCXXRefQualifier(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  CXType arg1 ;
+  CXType *argp1 ;
+  enum CXRefQualifierKind result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  argp1 = *(CXType **)&jarg1; 
+  if (!argp1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null CXType");
+    return 0;
+  }
+  arg1 = *argp1; 
+  result = (enum CXRefQualifierKind)clang_Type_getCXXRefQualifier(arg1);
+  jresult = (jint)result; 
   return jresult;
 }
 
@@ -5457,6 +5524,27 @@ SWIGEXPORT jlong JNICALL Java_st_bug_clang_swig_clangjavaJNI_Cursor_1getObjCDecl
   }
   arg1 = *argp1; 
   result = (unsigned int)clang_Cursor_getObjCDeclQualifiers(arg1);
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_st_bug_clang_swig_clangjavaJNI_Cursor_1isObjCOptional(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jlong jresult = 0 ;
+  CXCursor arg1 ;
+  CXCursor *argp1 ;
+  unsigned int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  argp1 = *(CXCursor **)&jarg1; 
+  if (!argp1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "Attempt to dereference null CXCursor");
+    return 0;
+  }
+  arg1 = *argp1; 
+  result = (unsigned int)clang_Cursor_isObjCOptional(arg1);
   jresult = (jlong)result; 
   return jresult;
 }
@@ -11052,6 +11140,60 @@ SWIGEXPORT jlong JNICALL Java_st_bug_clang_swig_clangjavaJNI_CompileCommand_1get
   arg1 = *(CXCompileCommand *)&jarg1; 
   arg2 = (unsigned int)jarg2; 
   result = clang_CompileCommand_getArg(arg1,arg2);
+  {
+    CXString * resultptr = (CXString *) malloc(sizeof(CXString));
+    memmove(resultptr, &result, sizeof(CXString));
+    *(CXString **)&jresult = resultptr;
+  }
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_st_bug_clang_swig_clangjavaJNI_CompileCommand_1getNumMappedSources(JNIEnv *jenv, jclass jcls, jlong jarg1) {
+  jlong jresult = 0 ;
+  CXCompileCommand arg1 = (CXCompileCommand) 0 ;
+  unsigned int result;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(CXCompileCommand *)&jarg1; 
+  result = (unsigned int)clang_CompileCommand_getNumMappedSources(arg1);
+  jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_st_bug_clang_swig_clangjavaJNI_CompileCommand_1getMappedSourcePath(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
+  jlong jresult = 0 ;
+  CXCompileCommand arg1 = (CXCompileCommand) 0 ;
+  unsigned int arg2 ;
+  CXString result;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(CXCompileCommand *)&jarg1; 
+  arg2 = (unsigned int)jarg2; 
+  result = clang_CompileCommand_getMappedSourcePath(arg1,arg2);
+  {
+    CXString * resultptr = (CXString *) malloc(sizeof(CXString));
+    memmove(resultptr, &result, sizeof(CXString));
+    *(CXString **)&jresult = resultptr;
+  }
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_st_bug_clang_swig_clangjavaJNI_CompileCommand_1getMappedSourceContent(JNIEnv *jenv, jclass jcls, jlong jarg1, jlong jarg2) {
+  jlong jresult = 0 ;
+  CXCompileCommand arg1 = (CXCompileCommand) 0 ;
+  unsigned int arg2 ;
+  CXString result;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = *(CXCompileCommand *)&jarg1; 
+  arg2 = (unsigned int)jarg2; 
+  result = clang_CompileCommand_getMappedSourceContent(arg1,arg2);
   {
     CXString * resultptr = (CXString *) malloc(sizeof(CXString));
     memmove(resultptr, &result, sizeof(CXString));

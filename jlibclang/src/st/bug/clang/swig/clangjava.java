@@ -149,6 +149,10 @@ public class clangjava implements clangjavaConstants {
     return clangjavaJNI.Location_isInSystemHeader(CXSourceLocation.getCPtr(location), location);
   }
 
+  public static int Location_isFromMainFile(CXSourceLocation location) {
+    return clangjavaJNI.Location_isFromMainFile(CXSourceLocation.getCPtr(location), location);
+  }
+
   public static CXSourceRange getNullRange() {
     return new CXSourceRange(clangjavaJNI.getNullRange(), true);
   }
@@ -596,12 +600,20 @@ public class clangjava implements clangjavaConstants {
     return clangjavaJNI.Type_getAlignOf(CXType.getCPtr(T), T);
   }
 
+  public static CXType Type_getClassType(CXType T) {
+    return new CXType(clangjavaJNI.Type_getClassType(CXType.getCPtr(T), T), true);
+  }
+
   public static long Type_getSizeOf(CXType T) {
     return clangjavaJNI.Type_getSizeOf(CXType.getCPtr(T), T);
   }
 
   public static long Type_getOffsetOf(CXType T, String S) {
     return clangjavaJNI.Type_getOffsetOf(CXType.getCPtr(T), T, S);
+  }
+
+  public static CXRefQualifierKind Type_getCXXRefQualifier(CXType T) {
+    return CXRefQualifierKind.swigToEnum(clangjavaJNI.Type_getCXXRefQualifier(CXType.getCPtr(T), T));
   }
 
   public static long Cursor_isBitField(CXCursor C) {
@@ -706,6 +718,10 @@ public class clangjava implements clangjavaConstants {
 
   public static long Cursor_getObjCDeclQualifiers(CXCursor C) {
     return clangjavaJNI.Cursor_getObjCDeclQualifiers(CXCursor.getCPtr(C), C);
+  }
+
+  public static long Cursor_isObjCOptional(CXCursor C) {
+    return clangjavaJNI.Cursor_isObjCOptional(CXCursor.getCPtr(C), C);
   }
 
   public static long Cursor_isVariadic(CXCursor C) {
@@ -1214,6 +1230,18 @@ public class clangjava implements clangjavaConstants {
 
   public static CXString CompileCommand_getArg(SWIGTYPE_p_void arg0, long I) {
     return new CXString(clangjavaJNI.CompileCommand_getArg(SWIGTYPE_p_void.getCPtr(arg0), I), true);
+  }
+
+  public static long CompileCommand_getNumMappedSources(SWIGTYPE_p_void arg0) {
+    return clangjavaJNI.CompileCommand_getNumMappedSources(SWIGTYPE_p_void.getCPtr(arg0));
+  }
+
+  public static CXString CompileCommand_getMappedSourcePath(SWIGTYPE_p_void arg0, long I) {
+    return new CXString(clangjavaJNI.CompileCommand_getMappedSourcePath(SWIGTYPE_p_void.getCPtr(arg0), I), true);
+  }
+
+  public static CXString CompileCommand_getMappedSourceContent(SWIGTYPE_p_void arg0, long I) {
+    return new CXString(clangjavaJNI.CompileCommand_getMappedSourceContent(SWIGTYPE_p_void.getCPtr(arg0), I), true);
   }
 
 }
