@@ -108,9 +108,9 @@ public class Type {
 		long v = Clang.Type_getOffsetOf(me, field);
 		return CXTypeLayoutError.swigToEnum((int) v);
 	}
-	
+
 	@Override
 	public String toString() {
-		return getSpelling();
+		return "Type:" + getSpelling();
 	}
 }

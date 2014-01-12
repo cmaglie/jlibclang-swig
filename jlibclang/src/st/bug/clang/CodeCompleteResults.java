@@ -12,7 +12,7 @@ public class CodeCompleteResults implements Disposable {
 
 	private CXCodeCompleteResults me;
 
-	public CodeCompleteResults(CXCodeCompleteResults results) {
+	protected CodeCompleteResults(CXCodeCompleteResults results) {
 		me = results;
 	}
 
@@ -62,7 +62,7 @@ public class CodeCompleteResults implements Disposable {
 		return new CodeCompletionResult(result);
 	}
 
-	void sort() {
+	public void sort() {
 		Clang.sortCodeCompletionResults(me.getResults(), getNumResults());
 	}
 }
