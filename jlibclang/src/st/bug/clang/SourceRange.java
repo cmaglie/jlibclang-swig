@@ -1,5 +1,8 @@
 package st.bug.clang;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+
 import st.bug.clang.swig.CXSourceRange;
 import st.bug.clang.wrappers.Clang;
 import st.bug.clang.wrappers.Disposable;
@@ -49,4 +52,28 @@ public class SourceRange implements Disposable {
 	public String toString() {
 		return "SourceRange: [" + getStart() + " - " + getEnd() + "]";
 	}
+
+	public String read() {
+		FilePosition start = getStart().getFileLocation();
+		FilePosition end = getEnd().getFileLocation();
+		FileInputStream in = null;
+		try {
+			if (start.file.getFile() == null)
+				return "";
+			in = new FileInputStream(start.file.getFile());
+			in.skip(start.offset);
+			byte[] buff = new byte[(int) (end.offset - start.offset)];
+			in.read(buff);
+			return new String(buff);
+		} catch (IOException e) {
+		} finally {
+			try {
+				if (in != null)
+					in.close();
+			} catch (IOException e) {
+			}
+		}
+		return "Invalid position!";
+	}
+
 }
