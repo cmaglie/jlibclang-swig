@@ -9,6 +9,7 @@ import st.bug.clang.swig.CXCursorKind;
 import st.bug.clang.swig.CXLanguageKind;
 import st.bug.clang.swig.CXLinkageKind;
 import st.bug.clang.swig.CXPlatformAvailability;
+import st.bug.clang.swig.CXSourceRange;
 import st.bug.clang.swig.CXString;
 import st.bug.clang.swig.CX_CXXAccessSpecifier;
 import st.bug.clang.swig.SWIGTYPE_p_p_CXCursor;
@@ -216,7 +217,10 @@ public class Cursor {
 	}
 
 	public SourceRange getExtent() {
-		return new SourceRange(Clang.getCursorExtent(me));
+		CXSourceRange cursorExtent = Clang.getCursorExtent(me);
+		if (cursorExtent == null)
+			return null;
+		return new SourceRange(cursorExtent);
 	}
 
 	public Type getType() {
