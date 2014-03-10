@@ -2,8 +2,8 @@
 %module clangjava
 %{
 /* Includes headers in the wrapper code */
-#include "clang-c/Index.h"
-#include "clang-c/CXCompilationDatabase.h"
+#include <clang-c/Index.h>
+#include <clang-c/CXCompilationDatabase.h>
 %}
 
 %include typemaps.i
@@ -84,8 +84,8 @@ enum CXChildVisitResult CXCursorVisitor_cb(CXCursor cursor, CXCursor parent, CXC
 }
 
 /* Parse the headers file to generate wrappers */
-%include "clang-c/Platform.h"
-%include "clang-c/CXString.h"
-%include "clang-c/Index.h"
-%include "clang-c/CXCompilationDatabase.h"
+%include <clang-c/Platform.h>
+%include <clang-c/CXString.h>
+%include <clang-c/Index.h>
+%include <clang-c/CXCompilationDatabase.h>
 
