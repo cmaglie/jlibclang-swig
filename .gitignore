@@ -1,0 +1,10 @@
+*.tar.gz
+objdir
+*-build
+llvm-3.4
+swig-2.0.12
+jlibclang/lib/*.so
+jlibclang/swig/*.so
+jlibclang/swig/*.o
+jlibclang/src/st/bug/clang/swig/*.java
+jlibclang/swig/clangjava_wrap.c
